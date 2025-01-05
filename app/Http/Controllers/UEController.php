@@ -28,7 +28,7 @@ public function create()
 public function store(Request $request)
 {
     $request->validate([
-        'code' => 'required|string|max:10',
+        'code' => 'required|regex:/^UE\d{2}$/',
         'nom' => 'required|string|max:255',
         'credits_ects' => 'required|integer|min:1',
         'semestre' => 'required|integer|between:1,6',
@@ -57,15 +57,7 @@ public function update(Request $request, $id)
     return redirect()->route('ues.index')->with('success', 'UE mise à jour avec succès');
 }
 
-public function associateEcs(Request $request, $ueId)
-{
-    $ue = UE::findOrFail($ueId);
 
-    // Associer les ECs sélectionnés à l'UE
-    $ue->ecs()->sync($request->input('ecs', [])); 
-
-    return redirect()->route('ues.edit', $ueId)->with('success', 'Les ECs ont été associés avec succès.');
-}
 
 
 

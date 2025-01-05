@@ -32,5 +32,10 @@ Route::get('/ecs', [UEController::class, 'index'])->name('ecs.index');
 Route::get('/ecs/{id}', [UEController::class, 'show'])->name('ecs.show');
 Route::get('/ecs/creat', [UEController::class, 'creat'])->name('ecs.creat');
 Route::get('/ecs/edit', [UEController::class, 'edit'])->name('ecs.edit');
+Route::post('/ues', [UEController::class, 'store'])->middleware('auth');
+Route::post('/ues', [UEController::class, 'store']);
+Route::post('/ues', [UEController::class, 'store'])->name('ues.store');
+
+
 
 require __DIR__.'/auth.php';
