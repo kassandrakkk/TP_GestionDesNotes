@@ -15,5 +15,9 @@ class UE extends Model
         'semestre',
         
     ];
+    public function ecs()
+    {
+        return $this->hasMany(EC::class);
+    }
 
 }

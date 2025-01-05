@@ -13,12 +13,14 @@ class EC extends Model
         'coefficient',
         'ue_id',
     ];
-    public $timestamps = true;
+    public $timestamps = true; 
 
     public function ue()
     {
         return $this->belongsTo(UE::class, 'ue_id');
     }
+    
+
 
 
 }

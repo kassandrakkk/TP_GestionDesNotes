@@ -6,7 +6,7 @@ export default {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+        './resources/views/**/*.blade.php',    
     ],
 
     theme: {
@@ -18,4 +18,16 @@ export default {
     },
 
     plugins: [forms],
+
+};
+module.exports = {
+    content: [
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
+    ],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
 };

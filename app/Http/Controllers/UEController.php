@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UE;
+use Illuminate\View\View;
 
 class UEController extends Controller
 {
@@ -11,7 +12,15 @@ class UEController extends Controller
 {
     $ues = UE::all();
     return view('ues.index', compact('ues'));
+
 }
+
+public function show($id)
+{
+    $ue = UE::findOrFail($id);
+    return view('ues.show', compact('ue'));
+}
+
 public function create()
 {
     return view('ues.create');
@@ -47,15 +56,16 @@ public function update(Request $request, $id)
 
     return redirect()->route('ues.index')->with('success', 'UE mise à jour avec succès');
 }
-public function destroy($id)
+
+public function associateEcs(Request $request, $ueId)
 {
-    $ue = UE::findOrFail($id);
-    $ue->delete();
+    $ue = UE::findOrFail($ueId);
 
-    return redirect()->route('ues.index')->with('success', 'UE supprimée avec succès');
+    // Associer les ECs sélectionnés à l'UE
+    $ue->ecs()->sync($request->input('ecs', [])); 
+
+    return redirect()->route('ues.edit', $ueId)->with('success', 'Les ECs ont été associés avec succès.');
 }
-
-
 
 
 
